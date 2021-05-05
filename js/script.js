@@ -47,15 +47,38 @@ function getRandomNumber (min, max) {
 
 var bombe = [];
 var tentativi = [];
-var maxTentativi = 10;
-var punteggio = 0;
+var maxTentativi = 20;
 var gameOver = false;
 
-// Genero le bombe: 16 numeri casuali che non si ripetono in un intervallo tra 1 e 100. Usiamo un ciclo while in quanto non possiamo sapere precisamente quante iterazioni dovrà svolgere considerando gli eventuali duplicati:
+// Bonus: Chiedo al giocatore di impostare la difficoltà con un numero tra 0 e 2: 
+// con difficoltà 0 => tra 1 e 100
+// con difficoltà 1 => tra 1 e 80
+// con difficoltà 2 => tra 1 e 50
+
+var sceltaDifficolta = parseInt(prompt("Scegli il livello di difficoltà tra 0, 1 e 2 dove 0 rappresenta l'esperienza più facile; 1 equilibrata e 2 più difficile!"));
+
+switch (sceltaDifficolta) {
+    case 0:
+        var maxTentativi = 20; // (100 - 16)
+        break;
+    
+    case 1:    
+        var maxTentativi = 10; // (80 - 16)
+        break;
+    
+    case 2:
+        var maxTentativi = 3; // (50 - 16)
+        break;
+    
+    default:
+        alert("Il gioco non conosce questa difficoltà!");
+}
+
+// Genero le bombe: 16 numeri casuali che non si ripetono in un intervallo tra 1 e ?. Usiamo un ciclo while in quanto non possiamo sapere precisamente quante iterazioni dovrà svolgere considerando gli eventuali duplicati:
 
 while (bombe.length < 16) {
     //Creo i numeri:
-    var numeroRandom = getRandomNumber (1, 100);
+    var numeroRandom = getRandomNumber (1, maxTentativi);
     // Tramite un if faccio in modo di non avere duplicati:
     if (!isInArray(numeroRandom, bombe)) {
         bombe.push(numeroRandom)
@@ -67,18 +90,7 @@ while (bombe.length < 16) {
 // Abbiamo le nostre 16 bombe:
 console.log("Bombe :", bombe);
 
-// Bonus: Chiedo al giocatore di impostare la difficoltà con un numero tra 0 e 2: 
-// con difficoltà 0 => tra 1 e 100
-// con difficoltà 1 => tra 1 e 80
-// con difficoltà 2 => tra 1 e 50
-
-var sceltaDifficolta = parseInt(prompt("Scegli il livello di difficoltà tra 0,1 e 2 dove 0 rappresenta l'esperienza più facile; 1 equilibrata e 2 più difficile!"));
-
-switch (sceltaDifficolta) {
-    case "0":
-        
-}
-
+//---------------------------- CAMPO MINATO ----------------------------------
 
 // Chiedo ora al giocatore di inserire i suoi tentativi in un range compreso tra (min(1),max(?)) - 16 (bombe). Ovviamente non sono ammessi doppioni. Visto che anche in questo caso non conosciamo il numero di iterazioni precise useremo ancora il ciclo while:
 
