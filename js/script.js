@@ -36,7 +36,7 @@ function isInArray (element, array) {
     return false;
 }
 
-// 2- Funzione per creare numeri casuali in un range compreso tra un "min" e un "max":
+// 2 - Funzione per creare numeri casuali in un range compreso tra un "min" e un "max":
 
 function getRandomNumber (min, max) {
     
@@ -47,7 +47,7 @@ function getRandomNumber (min, max) {
 
 var bombe = [];
 var tentativi = [];
-var maxTentativi = 20;
+var maxTentativi = 84;
 var gameOver = false;
 
 // Bonus: Chiedo al giocatore di impostare la difficoltà con un numero tra 0 e 2: 
@@ -59,15 +59,15 @@ var sceltaDifficolta = parseInt(prompt("Scegli il livello di difficoltà tra 0, 
 
 switch (sceltaDifficolta) {
     case 0:
-        var maxTentativi = 20; // (100 - 16)
+        var maxTentativi = 84; // (100 - 16)
         break;
     
     case 1:    
-        var maxTentativi = 10; // (80 - 16)
+        var maxTentativi = 64; // (80 - 16)
         break;
     
     case 2:
-        var maxTentativi = 3; // (50 - 16)
+        var maxTentativi = 34; // (50 - 16)
         break;
     
     default:
@@ -90,7 +90,7 @@ while (bombe.length < 16) {
 // Abbiamo le nostre 16 bombe:
 console.log("Bombe :", bombe);
 
-//---------------------------- CAMPO MINATO ----------------------------------
+//------------------------------- GAME ------------------------------------
 
 // Chiedo ora al giocatore di inserire i suoi tentativi in un range compreso tra (min(1),max(?)) - 16 (bombe). Ovviamente non sono ammessi doppioni. Visto che anche in questo caso non conosciamo il numero di iterazioni precise useremo ancora il ciclo while:
 
@@ -115,7 +115,7 @@ while (tentativi.length < maxTentativi && gameOver == false) {
 // Se il giocatore riesce ad esaurire tutti suoi maxTentativi senza inserire un numero presente nell'array [bombe] allora ha vinto:
 
 if (tentativi.length == maxTentativi) {
-    alert("COMPLIMENTI!!\N " + "Il tuo punteggio è: " + tentativi.length + "!");
+    alert("COMPLIMENTI!!\n " + "Il tuo punteggio è: " + tentativi.length + "!");
 }
 console.log("Punteggio finale: " + tentativi.length);
 
